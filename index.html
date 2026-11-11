@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para ti, mi amor 💙</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--noche:#04122e;--mar:#0a2a63;--azul:#2f80ff;--cielo:#7cc4ff;--hielo:#eaf5ff;--luz:#ffe58a}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--hielo);background:radial-gradient(circle at 50% 15%,var(--mar),var(--noche) 78%);overflow:hidden}
+#fondo,#efectos{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#fondo{z-index:0}#efectos{z-index:5}
+.burbuja{position:absolute;bottom:-30px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.5),rgba(124,196,255,.12));animation:sube linear infinite}
+@keyframes sube{to{transform:translateY(-115vh) translateX(30px)}}
+.pantalla{position:fixed;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:24px;text-align:center;overflow-y:auto}
+.pantalla.activa{display:flex}
+.pantalla.entra{animation:entra .9s cubic-bezier(.2,.8,.2,1) both}
+.pantalla.sale{display:flex;animation:sale .5s ease-in both}
+@keyframes entra{from{opacity:0;transform:translateY(40px) scale(.94);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes sale{to{opacity:0;transform:translateY(-40px) scale(1.04);filter:blur(8px)}}
+.pantalla.entra>*{animation:aparece .8s cubic-bezier(.2,.8,.2,1) both}
+.pantalla.entra>*:nth-child(1){animation-delay:.15s}.pantalla.entra>*:nth-child(2){animation-delay:.4s}.pantalla.entra>*:nth-child(3){animation-delay:.65s}.pantalla.entra>*:nth-child(4){animation-delay:.9s}.pantalla.entra>*:nth-child(5){animation-delay:1.15s}
+@keyframes aparece{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+h1,h2{font-family:'Dancing Script',cursive,serif;line-height:1.15;font-weight:700}
+h1{font-size:clamp(2.1rem,7vw,3.8rem);max-width:17ch}
+h2{font-size:clamp(2rem,6vw,3.3rem);max-width:20ch}
+.foto{width:min(330px,74vw);max-height:40vh;object-fit:contain;border-radius:28px;background:#fff;border:4px solid var(--cielo);box-shadow:0 0 0 8px rgba(124,196,255,.18),0 18px 50px rgba(47,128,255,.45);animation:flota 4s ease-in-out infinite}
+.foto.gif{background:transparent;border:0;box-shadow:none;max-height:30vh;filter:drop-shadow(0 0 22px rgba(124,196,255,.7))}
+@keyframes flota{50%{transform:translateY(-10px) rotate(-1deg)}}
+.gigante{font-size:clamp(2.8rem,12vw,6.8rem);color:var(--cielo);text-shadow:0 0 14px var(--azul),0 0 44px rgba(47,128,255,.8),0 0 80px rgba(124,196,255,.5);animation:late 1.4s ease-in-out infinite;max-width:12ch}
+@keyframes late{50%{transform:scale(1.06)}}
+button{font:700 1.1rem 'Nunito',sans-serif;border:0;border-radius:999px;padding:14px 36px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--azul),#1a56c9);box-shadow:0 8px 24px rgba(47,128,255,.5);transition:transform .2s,box-shadow .2s}
+button:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 34px rgba(124,196,255,.55)}
+button:focus-visible{outline:3px solid var(--luz);outline-offset:3px}
+.opciones{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.btn-si{font-size:1.4rem;padding:16px 42px;animation:late 1.2s ease-in-out infinite}
+.btn-no{background:#2b4470;box-shadow:none}
+.final p{font-size:1.25rem;max-width:30ch;line-height:1.5}
+.firma{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--luz);text-shadow:0 0 16px rgba(255,229,138,.6)}
+.final .gigante{background:linear-gradient(90deg,#fff,var(--cielo),var(--luz),var(--cielo),#fff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 0 18px var(--azul));animation:late 1.4s ease-in-out infinite,brilla 3s linear infinite}
+@keyframes brilla{to{background-position:-250% 0}}
+.aro{position:absolute;width:min(560px,92vw);aspect-ratio:1;border-radius:50%;border:2px dashed rgba(124,196,255,.45);animation:gira 18s linear infinite;z-index:-1}
+.aro.b{width:min(380px,66vw);border-color:rgba(255,229,138,.5);animation-direction:reverse;animation-duration:12s}
+@keyframes gira{to{transform:rotate(360deg)}}
+.cae,.globo,.chispa,.confeti{position:absolute;will-change:transform}
+.cae{top:-40px;animation:cae linear forwards}
+@keyframes cae{to{transform:translateY(112vh) rotate(50deg)}}
+.globo{bottom:-60px;animation:globo ease-in forwards}
+@keyframes globo{to{transform:translateY(-120vh) translateX(var(--dx))}}
+.chispa{width:7px;height:7px;border-radius:50%;animation:chispa 1.1s ease-out forwards}
+@keyframes chispa{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+.confeti{top:-20px;width:9px;height:14px;animation:conf linear forwards}
+@keyframes conf{to{transform:translateY(112vh) translateX(var(--dx)) rotate(720deg)}}
+.pantalla.entra>.foto{animation:aparece .8s .15s cubic-bezier(.2,.8,.2,1) both,flota 4s ease-in-out 1s infinite}
+.pantalla.entra>.gigante{animation:aparece .8s .4s cubic-bezier(.2,.8,.2,1) both,late 1.4s ease-in-out 1.2s infinite}
+.final.entra>.gigante{animation:aparece .8s .4s cubic-bezier(.2,.8,.2,1) both,late 1.4s ease-in-out 1.2s infinite,brilla 3s linear infinite}
+.pantalla.entra>.aro{animation:gira 18s linear infinite}
+.pantalla.entra>.aro.b{animation:gira 12s linear infinite reverse}
+@keyframes f1{0%{opacity:0;transform:scale(0) rotate(-220deg)}70%{opacity:1;transform:scale(1.12) rotate(8deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes f2{0%{opacity:0;transform:perspective(900px) rotateY(-110deg) scale(.6)}100%{opacity:1;transform:perspective(900px) rotateY(0) scale(1)}}
+@keyframes f3{0%{opacity:0;transform:translateY(-100vh) rotate(18deg)}60%{opacity:1;transform:translateY(14px) rotate(-4deg)}80%{transform:translateY(-8px) rotate(2deg)}100%{transform:none}}
+@keyframes f4{0%{opacity:0;clip-path:circle(0% at 50% 50%);transform:scale(1.5);filter:blur(12px) drop-shadow(0 0 22px rgba(124,196,255,.7))}100%{opacity:1;clip-path:circle(75% at 50% 50%);transform:scale(1);filter:blur(0) drop-shadow(0 0 22px rgba(124,196,255,.7))}}
+.pantalla.entra>#im1{animation:f1 1.2s .15s cubic-bezier(.34,1.3,.64,1) both,flota 4s ease-in-out 1.4s infinite}
+.pantalla.entra>#im2{animation:f2 1.1s .15s cubic-bezier(.2,.8,.2,1) both,flota 4s ease-in-out 1.3s infinite}
+.pantalla.entra>#im3{animation:f3 1.4s .15s ease-out both,flota 4s ease-in-out 1.6s infinite}
+.pantalla.entra>#im4{animation:f4 1.5s .3s ease-out both,late 1.6s ease-in-out 1.9s infinite}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<div id="fondo" aria-hidden="true"></div>
+<div id="efectos" aria-hidden="true"></div>
+
+<section class="pantalla activa entra" id="p1">
+  <img class="foto" id="im1" src="foto1.jpg" alt="Koala azul con un corazón">
+  <h1>Buenos días, mi amor. ¿Sabes qué día es hoy?</h1>
+  <button data-siguiente>Siguiente</button>
+</section>
+
+<section class="pantalla" id="p2">
+  <img class="foto" id="im2" src="foto2.jpg" alt="Koala azul dibujando corazones">
+  <h2>¡Hoy es 11 de noviembre y eso significa que........!</h2>
+  <button data-siguiente>Siguiente</button>
+</section>
+
+<section class="pantalla" id="p3">
+  <img class="foto" id="im3" src="foto3.jpg" alt="Koala azul con un globo de corazón">
+  <h1 class="gigante">¡¿Quieres ser mi novia?!</h1>
+  <div class="opciones">
+    <button class="btn-si" id="si">Sí, acepto 💙</button>
+    <button class="btn-no" id="no" type="button">No acepto</button>
+  </div>
+</section>
+
+<section class="pantalla final" id="p4">
+  <div class="aro"></div><div class="aro b"></div>
+  <img class="foto gif" id="im4" src="foto4.gif" alt="Pareja de koalas con un corazón">
+  <h2 class="gigante" style="font-size:clamp(2.4rem,9vw,5rem)">¡Ahora ya somos novios! 💍</h2>
+  <p>Eso significa que siempre, por toda la vida serás mi enfermerita.</p>
+  <p>Te amo con todo mi corazón, mi amor.</p>
+  <div class="firma">Atentamente, Brian</div>
+</section>
+
+<script>
+const pantallas=[...document.querySelectorAll('.pantalla')];
+const fx=document.getElementById('efectos');
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+let idx=0,timers=[];
+
+/* Burbujas suaves de fondo (todo el tiempo, discretas) */
+const fondo=document.getElementById('fondo');
+for(let i=0;i<14;i++){const b=document.createElement('span');b.className='burbuja';const s=rnd(8,34);
+  b.style.cssText=`left:${rnd(0,100)}vw;width:${s}px;height:${s}px;animation-duration:${rnd(10,22)}s;animation-delay:${-rnd(0,20)}s`;fondo.appendChild(b);}
+
+function suelta(el,ms){fx.appendChild(el);setTimeout(()=>el.remove(),ms)}
+function cae(emojis,min,max){const e=document.createElement('span');e.className='cae';e.textContent=pick(emojis);
+  e.style.cssText=`left:${rnd(0,100)}vw;font-size:${rnd(min,max)}px;animation-duration:${rnd(3,7)}s`;suelta(e,7500)}
+function globo(){const e=document.createElement('span');e.className='globo';e.textContent=pick(['🎈','💙','🩵','🦋']);
+  e.style.cssText=`left:${rnd(0,100)}vw;font-size:${rnd(28,56)}px;--dx:${rnd(-80,80)}px;animation-duration:${rnd(5,9)}s`;suelta(e,9500)}
+function confeti(){const e=document.createElement('span');e.className='confeti';
+  e.style.cssText=`left:${rnd(0,100)}vw;background:${pick(['#7cc4ff','#2f80ff','#ffe58a','#fff','#9ad0ff'])};--dx:${rnd(-120,120)}px;animation-duration:${rnd(3,6)}s`;suelta(e,6500)}
+function fuego(x,y){const c=pick(['#7cc4ff','#ffe58a','#fff','#2f80ff']);
+  for(let i=0;i<18;i++){const a=i/18*Math.PI*2,d=rnd(60,130);const e=document.createElement('span');e.className='chispa';
+    e.style.cssText=`left:${x}px;top:${y}px;background:${c};box-shadow:0 0 10px ${c};--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d}px`;suelta(e,1200)}}
+
+/* Destello corto al cambiar de ventana */
+function destello(){for(let i=0;i<14;i++){const e=document.createElement('span');e.className='chispa';
+  const c=pick(['#7cc4ff','#fff','#ffe58a']);const a=rnd(0,6.28),d=rnd(80,220);
+  e.style.cssText=`left:50%;top:50%;background:${c};box-shadow:0 0 10px ${c};--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d}px`;suelta(e,1200)}}
+
+function ir(n){
+  const actual=pantallas[idx];
+  actual.classList.remove('entra');actual.classList.add('sale');
+  destello();
+  timers.forEach(clearInterval);timers=[];
+  setTimeout(()=>{
+    actual.classList.remove('activa','sale');
+    idx=n;const p=pantallas[idx];
+    p.classList.add('activa','entra');
+    if(idx===1){timers.push(setInterval(()=>cae(['💙','✨'],14,24),700))}
+    if(idx===2){timers.push(setInterval(()=>cae(['💙','🩵','💎'],18,34),260))}
+    if(idx===3){final()}
+  },480);
+}
+function final(){
+  for(let i=0;i<30;i++)setTimeout(()=>cae(['💙','🩵','💍','💎','⭐','✨'],18,44),i*50);
+  timers.push(setInterval(()=>cae(['💙','🩵','💕','💎','⭐','✨','🦋'],16,46),110));
+  timers.push(setInterval(globo,450));
+  timers.push(setInterval(()=>{for(let i=0;i<4;i++)confeti()},200));
+  timers.push(setInterval(()=>fuego(rnd(innerWidth*.1,innerWidth*.9),rnd(innerHeight*.1,innerHeight*.55)),650));
+  fuego(innerWidth*.25,innerHeight*.3);fuego(innerWidth*.75,innerHeight*.3);fuego(innerWidth*.5,innerHeight*.2);
+}
+document.querySelectorAll('[data-siguiente]').forEach(b=>b.addEventListener('click',()=>ir(idx+1)));
+document.getElementById('si').addEventListener('click',()=>ir(3));
+/* El botón "No acepto" no tiene ninguna función a propósito. */
+</script>
+</body>
+</html>
