@@ -75,21 +75,21 @@ button:focus-visible{outline:3px solid var(--luz);outline-offset:3px}
 
 <section class="pantalla activa entra" id="p1">
   <img class="foto" id="im1" src="foto1.jpg" alt="Koala azul con un corazón">
-  <h1>Buenos días, mi amor. ¿Sabes qué día es hoy?</h1>
-  <button data-siguiente>Siguiente</button>
-</section>
-
-<section class="pantalla" id="p2">
-  <img class="foto" id="im2" src="foto2.jpg" alt="Koala azul dibujando corazones">
-  <h2>¡Hoy es 11 de noviembre y eso significa que........!</h2>
+  <h1>Buenos días Mi Niñita hermoshaaa 🥰. ¿Sabes qué día es hoy mi vilaaaa 😍💕😍?</h1>
   <button data-siguiente>Siguiente</button>
 </section>
 
 <section class="pantalla" id="p3">
+  <img class="foto" id="im2" src="foto2.jpg" alt="Koala azul dibujando corazones">
+  <h2>¡😍Hoy es 11 de noviembre y eso significa que........😍!</h2>
+  <button data-siguiente>Siguiente</button>
+</section> 
+
+<section class="pantalla" id="p2">
   <img class="foto" id="im3" src="foto3.jpg" alt="Koala azul con un globo de corazón">
-  <h1 class="gigante">¡¿Quieres ser mi novia?!</h1>
+  <h1 class="gigante" style="font-size:clamp(1.6rem,6vw,3rem);max-width:22ch;line-height:1.2">¡¿💝QUIERES SER MI NOVIA EL DÍA DE HOY 11 DE NOVIEMBRE💝?!</h1>
   <div class="opciones">
-    <button class="btn-si" id="si">Sí, acepto 💙</button>
+    <button class="btn-si" id="si">Sí, acepto ser tu novia 💕</button>
     <button class="btn-no" id="no" type="button">No acepto</button>
   </div>
 </section>
@@ -97,10 +97,10 @@ button:focus-visible{outline:3px solid var(--luz);outline-offset:3px}
 <section class="pantalla final" id="p4">
   <div class="aro"></div><div class="aro b"></div>
   <img class="foto gif" id="im4" src="foto4.gif" alt="Pareja de koalas con un corazón">
-  <h2 class="gigante" style="font-size:clamp(2.4rem,9vw,5rem)">¡Ahora ya somos novios! 💍</h2>
-  <p>Eso significa que siempre, por toda la vida serás mi enfermerita.</p>
+  <h2 class="gigante" style="font-size:clamp(2.4rem,9vw,5rem)">¡Ahora ya somos noviossss mi amoorrr! 💍</h2>
+  <p>Eso significa que siempre, y por toda la vida serás mi enfermerita, la mujer que ilumina mi vida.</p>
   <p>Te amo con todo mi corazón, mi amor.</p>
-  <div class="firma">Atentamente, Brian</div>
+  <div class="firma">Atentamente, Tu NOVIO Brian 💕</div>
 </section>
 
 <script>
@@ -140,14 +140,14 @@ function ir(n){
     actual.classList.remove('activa','sale');
     idx=n;const p=pantallas[idx];
     p.classList.add('activa','entra');
-    if(idx===1){timers.push(setInterval(()=>cae(['💙','✨'],14,24),700))}
-    if(idx===2){timers.push(setInterval(()=>cae(['💙','🩵','💎'],18,34),260))}
+    if(idx===1){timers.push(setInterval(()=>cae(['💝','✨'],14,24),700))}
+    if(idx===2){timers.push(setInterval(()=>cae(['💙','😍','😘'],18,34),260))}
     if(idx===3){final()}
   },480);
 }
 function final(){
-  for(let i=0;i<30;i++)setTimeout(()=>cae(['💙','🩵','💍','💎','⭐','✨'],18,44),i*50);
-  timers.push(setInterval(()=>cae(['💙','🩵','💕','💎','⭐','✨','🦋'],16,46),110));
+  for(let i=0;i<30;i++)setTimeout(()=>cae(['💙','🤍','💍','😻','⭐','🥰'],18,44),i*50);
+  timers.push(setInterval(()=>cae(['💙','👩🏻‍⚕️','💕','💎','⭐','❤️','🦋'],16,46),110));
   timers.push(setInterval(globo,450));
   timers.push(setInterval(()=>{for(let i=0;i<4;i++)confeti()},200));
   timers.push(setInterval(()=>fuego(rnd(innerWidth*.1,innerWidth*.9),rnd(innerHeight*.1,innerHeight*.55)),650));
